@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Teste Itaú</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+        <![endif]-->
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <script>
+        jQuery.ajaxPrefilter(function(options) {
+            if (options.crossDomain && jQuery.support.cors) {
+                options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+            }
+        });
+
+        $(document).ready(function() {
+
+            $(".enviar_dados").click(function(event) {
+
+                event.stopPropagation();
+
+                var dados = {
+                    "passo_final": "simulador:2",
+                    "nome_parceiro": "ZAP",
+                    "simulou": true,
+                    "nome_cliente": "João da Silva",
+                    "email_cliente": "joao@mailnator.com",
+                    "cpf_cliente": "01347098615",
+                    "telefone_cliente": "11967719099",
+                    "data_nascimento": "1978-02-06T03:00:00.000Z",
+                    "renda_liquida": "10.000,00",
+                    "tempo_adquirir": "Em até 6 meses",
+                    "cpf_adicional": "",
+                    "tipo_imovel": "R",
+                    "estado_imovel": "SP",
+                    "valor_imovel": "500.000,00",
+                    "valor_entrada": "150.000,00",
+                    "estado_residencia": "",
+                    "profissao_cliente": "",
+                    "estado_civil_cliente": "",
+                    "infos_genericas": "cn:(organic);md:organic;sr:google",
+                    "novo_registro": "0"
+                };
+
+                var url = "https://ww3.itau.com.br/imobline/LogImoveis.aspx/GravarLogImoveis";
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: JSON.stringify(dados),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function(msg) {
+                        console.log("requisição bem sucedida");
+                        console.log(msg);
+
+                    }
+                });
+
+            });
+
+        });
+    </script>
+    <p><a href="#" class="enviar_dados">Enviar Dados</a></p>
+</body>
+
+</html>
