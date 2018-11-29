@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Verificar Contrato</title>
+  <meta name="description" content="Quantidade de Contratos na Odin">
+  <meta name="author" content="Robinson Melgar">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  	
+  	$(function() {
+  	
+  		var legacyId = prompt("Por favor digite o ID da conta no Viva Real (Publisher ID)");
+
+
+		$.get( "http://odin-api.vivareal.com/v2/accounts?legacyId=" + legacyId, function( data ) {
+
+			console.log(data);
+
+		});
+
+  	});
+
+  </script>
+
+</head>
+
+<body>
+
+</body>
+</html>
